@@ -1,0 +1,9 @@
+footer {
+	background-color: black;
+	text-align: left;
+	width: 100%;
+}
+
+footer span {
+	color: grey;
+}

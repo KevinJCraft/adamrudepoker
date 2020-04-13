@@ -1,0 +1,22 @@
+.menu-button-container {
+  width: 100%;
+  text-align: right;
+  background: none;
+  position: absolute;
+  top: 0;
+}
+
+.menu-button-container button {
+  font-weight: bolder;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-size: 50px;
+  background-color: transparent;
+}
+
+@media (min-width: 750px) {
+  .menu-button-container {
+    display: none;
+  }
+}

@@ -1,0 +1,140 @@
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.25s ease-out 0s;
+  position: fixed;
+  right: 0;
+  background-color: rgb(51, 51, 54);
+  width: 65%;
+  min-height: 100%;
+  z-index: 100;
+  transform: translateX(65vw);
+}
+
+.main-nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.nav-internal-links {
+  flex: 1;
+}
+
+.nav-external-links {
+  font-size: 2.25em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 1em;
+}
+
+.show {
+  transform: translateX(0);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.main-nav li {
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-internal-links a {
+  font-size: 1.35em;
+  width: 100%;
+  font-weight: bold;
+  color: transparent;
+  text-shadow: 0 0 0 white;
+  text-transform: uppercase;
+  display: block;
+  padding: 1em;
+  transition: 0.2s;
+  text-decoration: none;
+  overflow: hidden;
+}
+.nav-internal-links a:hover,
+.nav-internal-links .active {
+  color: black;
+  background-color: rgba(250, 250, 250, 0.6);
+}
+
+@media (min-width: 750px) {
+  .main-nav {
+    position: static;
+    display: block;
+    min-width: 100%;
+    transform: none;
+    background-color: #28208c;
+    min-height: 0;
+  }
+
+  .main-nav a {
+    font-size: 1.15em;
+  }
+
+  .nav-internal-links a:hover {
+    background-color: rgba(250, 250, 250, 0.8);
+  }
+
+  .main-nav .active {
+    background-color: rgba(250, 250, 250, 0.6);
+  }
+
+  .nav-internal-links {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+  }
+
+  .nav-internal-links li {
+    flex: 1;
+    text-align: center;
+  }
+
+  .nav-external-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+    position: fixed;
+    padding-bottom: 0;
+    bottom: 20px;
+    right: 25px;
+  }
+
+  .nav-external-links a:hover {
+    transform: scale(1.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-nav {
+    display: flex;
+    align-content: flex-end;
+    flex-direction: row;
+  }
+  .nav-internal-links {
+    max-width: 60%;
+    margin-left: 30px;
+  }
+
+  .nav-external-links {
+    position: static;
+    top: 0;
+    bottom: auto;
+    flex-direction: row;
+    width: 200px;
+    min-height: auto;
+  }
+
+  .nav-external-links li {
+    line-height: 61px;
+  }
+
+  .nav-external-links a {
+    height: 61px;
+  }
+}

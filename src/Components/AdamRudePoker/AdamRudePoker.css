@@ -1,0 +1,10 @@
+.vertical-containter {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.AR-main-content {
+  flex: 1;
+  margin-top: 70px;
+}
