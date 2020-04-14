@@ -38,8 +38,8 @@ const Nav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="./about" onClick={closeMenu}>
-            About me
+          <NavLink to="./OddsCalculator" onClick={closeMenu}>
+            Calculator
           </NavLink>
         </li>
         <li>

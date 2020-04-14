@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 const VideoCard = ({ video, setFocusVideoID }) => {
   return (
-    <Card style={{ width: "auto", justifyContent: "space-between" }}>
+    <Card className="w-auto justify-content-between">
       <Card.Img variant="top" src={video.snippet.thumbnails.high.url} />
       <Card.Body>
         <Card.Title
@@ -12,6 +12,7 @@ const VideoCard = ({ video, setFocusVideoID }) => {
             height: "3rem",
             overflow: "hidden",
             textOverflow: "ellipsis",
+            maxWidth: "4000px",
           }}
         >
           {video.snippet.title}

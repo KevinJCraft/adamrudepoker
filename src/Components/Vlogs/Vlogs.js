@@ -70,11 +70,7 @@ const Vlogs = () => {
                   style={{ paddingBottom: "1rem" }}
                   key={video.id}
                 >
-                  <VideoCard
-                    setFocusVideoID={setFocusVideoID}
-                    video={video}
-                    shadow
-                  />
+                  <VideoCard setFocusVideoID={setFocusVideoID} video={video} />
                 </Col>
               )
           )}

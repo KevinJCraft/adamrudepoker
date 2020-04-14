@@ -1,0 +1,28 @@
+.player-card {
+  width: 95%;
+  margin: 0 auto 0.5em auto;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  padding: 0.25em;
+}
+
+.player-card-cards {
+  display: flex;
+  justify-content: space-around;
+}
+
+.player-card h3 {
+  flex: 1;
+}
+
+.player-card-results {
+  display: flex;
+  flex-direction: column;
+}
+
+.is-focused {
+  transition: all 0.25s ease-in-out;
+  transform: scaleY(1.1);
+  background-color: rgba(248, 244, 27, 0.4);
+}
