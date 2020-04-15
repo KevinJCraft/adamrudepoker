@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import image1 from "../../Assets/img/poker.jpg";
-import shopPic from "../../Assets/img/shopSoRude.PNG";
+import shopPic from "../../Assets/img/shopSoRude.png";
+import shopPic2 from "../../Assets/img/shopSoRude2.png";
+import shopPic3 from "../../Assets/img/shopSoRude3.png";
 import Button from "react-bootstrap/Button";
 
 const HeroCarousel = () => {
@@ -21,21 +22,19 @@ const HeroCarousel = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={image1} alt="Second slide" />
+        <img className="d-block w-100" src={shopPic2} alt="Second slide" />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Visit ShopSoRude.com for more merch</h3>
+          <Button variant="info">Shop Now</Button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={image1} alt="Third slide" />
+        <img className="d-block w-100" src={shopPic3} alt="Third slide" />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <h3>Visit ShopSoRude.com for more merch</h3>
+          <Button variant="info">Shop Now</Button>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
