@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import "./VideoCard.css";
 
 const VideoCard = ({ video, setFocusVideo, parseDate }) => {
   const handleSetVideo = (videoToSet) => {
@@ -8,7 +8,10 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
     window.scrollTo(0, 0);
   };
   return (
-    <Card className="w-auto justify-content-between">
+    <Card
+      className="w-auto justify-content-between hover-cursor"
+      onClick={() => handleSetVideo(video)}
+    >
       <Card.Img variant="top" src={video.snippet.thumbnails.high.url} />
       <Card.Body>
         <Card.Title
@@ -16,7 +19,6 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
             height: "3rem",
             overflow: "hidden",
             textOverflow: "ellipsis",
-            maxWidth: "4000px",
           }}
         >
           {video.snippet.title}
@@ -34,9 +36,6 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
         >
           {video.snippet.description}
         </Card.Text>
-        <Button variant="primary" onClick={() => handleSetVideo(video)}>
-          Play
-        </Button>
       </Card.Body>
     </Card>
   );

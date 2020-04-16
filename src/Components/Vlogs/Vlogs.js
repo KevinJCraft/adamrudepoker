@@ -58,7 +58,7 @@ const Vlogs = () => {
       {console.log(focusVideo)}
 
       <MenuButton />
-      <Row className="justify-content-around p-2">
+      <Row className="justify-content-around p-2 mb-4">
         {focusVideo ? (
           <Card className="w-100">
             <Card.Body>
