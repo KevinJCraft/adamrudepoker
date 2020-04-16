@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Components/Header";
 import PlayerBlock from "./Components/PlayerBlock";
 import Deck from "./Utils/deck";
@@ -48,7 +48,11 @@ const OddsCalculator = () => {
   };
 
   const removeCard = (card, indexToRemoveFrom = focusIndex) => {
-    if (players[0].winPercent) resetResults();
+    players.forEach((player) => {
+      if (player.winPercent) {
+        resetResults();
+      }
+    });
     card.location = "deck";
     let newPlayers = [...players].map((player) => {
       if (player.index === indexToRemoveFrom) {
@@ -204,6 +208,10 @@ const OddsCalculator = () => {
     if (card.rank) removeCard(card, index);
     else setFocusIndex(index);
   };
+
+  useEffect(() => {
+    handleClearCards();
+  }, []);
   return (
     <div className="Calculator">
       <Row>
