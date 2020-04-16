@@ -62,15 +62,17 @@ const Vlogs = () => {
         {focusVideo ? (
           <Card className="w-100">
             <Card.Body>
-              <iframe
-                width="100%"
-                height="500px" //todo make this auto
-                src={`https://www.youtube.com/embed/${focusVideo.snippet.resourceId.videoId}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="this"
-              ></iframe>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${focusVideo.snippet.resourceId.videoId}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="this"
+                ></iframe>
+              </div>
 
               <Card.Title>{focusVideo.snippet.title}</Card.Title>
               <Card.Subtitle className="py-2 font-weight-normal font-italic">
