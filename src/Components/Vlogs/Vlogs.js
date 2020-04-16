@@ -5,12 +5,14 @@ import VideoCard from "./VideoCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Spinner from "react-bootstrap/Spinner";
 
 const Vlogs = () => {
   const [videos, setVideos] = useState();
   const [prevPageToken, setPrevPageToken] = useState();
   const [nextPageToken, setNextPageToken] = useState();
-  const [focusVideoID, setFocusVideoID] = useState();
+  const [focusVideo, setFocusVideo] = useState();
   const getFeed = useCallback(
     async (pageToken = "") => {
       youtube
@@ -24,7 +26,6 @@ const Vlogs = () => {
           },
         })
         .then((obj) => {
-          console.log(obj);
           setVideos(obj.data.items);
           setPrevPageToken(
             obj.data.prevPageToken ? obj.data.prevPageToken : ""
@@ -32,30 +33,55 @@ const Vlogs = () => {
           setNextPageToken(
             obj.data.nextPageToken ? obj.data.nextPageToken : ""
           );
-          if (!focusVideoID)
-            setFocusVideoID(obj.data.items[0].snippet.resourceId.videoId);
+          if (!focusVideo) setFocusVideo(obj.data.items[0]);
         })
         .catch((err) => console.log(err.message));
     },
-    [focusVideoID]
+    [focusVideo]
   );
 
   useEffect(() => {
     getFeed();
   }, [getFeed]);
+
+  const parseDate = (str) => {
+    let date = new Date(str);
+    return date.toDateString();
+  };
+
+  const handlePageChange = (token) => {
+    getFeed(token);
+    window.scrollTo(0, 0);
+  };
   return (
     <div>
+      {console.log(focusVideo)}
+
       <MenuButton />
-      <Row style={{ justifyContent: "space-around", paddingBottom: "2rem" }}>
-        <iframe
-          width="100%"
-          height="500px" //todo make this auto
-          src={`https://www.youtube.com/embed/${focusVideoID}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="this"
-        ></iframe>
+      <Row className="justify-content-around p-2">
+        {focusVideo ? (
+          <Card className="w-100">
+            <Card.Body>
+              <iframe
+                width="100%"
+                height="500px" //todo make this auto
+                src={`https://www.youtube.com/embed/${focusVideo.snippet.resourceId.videoId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="this"
+              ></iframe>
+
+              <Card.Title>{focusVideo.snippet.title}</Card.Title>
+              <Card.Subtitle className="py-2 font-weight-normal font-italic">
+                {parseDate(focusVideo.snippet.publishedAt)}
+              </Card.Subtitle>
+              <Card.Text>{focusVideo.snippet.description}</Card.Text>
+            </Card.Body>
+          </Card>
+        ) : (
+          <Spinner animation="border" />
+        )}
       </Row>
       <Row>
         {videos &&
@@ -70,26 +96,33 @@ const Vlogs = () => {
                   style={{ paddingBottom: "1rem" }}
                   key={video.id}
                 >
-                  <VideoCard setFocusVideoID={setFocusVideoID} video={video} />
+                  <VideoCard
+                    setFocusVideo={setFocusVideo}
+                    video={video}
+                    parseDate={parseDate}
+                  />
                 </Col>
               )
           )}
       </Row>
-      <Row>
-        <Button
-          size="lg"
-          disabled={!prevPageToken}
-          onClick={() => getFeed(prevPageToken)}
-        >
-          Prev
-        </Button>
-        <Button
-          size="lg"
-          disabled={!nextPageToken}
-          onClick={() => getFeed(nextPageToken)}
-        >
-          Next
-        </Button>
+      <Row className="p-3">
+        <span className="mx-auto">
+          <Button
+            size="lg"
+            disabled={!prevPageToken}
+            onClick={() => handlePageChange(prevPageToken)}
+            className="mr-2"
+          >
+            Prev
+          </Button>
+          <Button
+            size="lg"
+            disabled={!nextPageToken}
+            onClick={() => handlePageChange(nextPageToken)}
+          >
+            Next
+          </Button>
+        </span>
       </Row>
     </div>
   );
