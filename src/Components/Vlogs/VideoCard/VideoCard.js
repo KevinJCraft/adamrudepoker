@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "./VideoCard.css";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const VideoCard = ({ video, setFocusVideo, parseDate }) => {
   const handleSetVideo = (videoToSet) => {
@@ -8,35 +10,38 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
     window.scrollTo(0, 0);
   };
   return (
-    <Card
-      className="w-auto justify-content-between hover-cursor"
-      onClick={() => handleSetVideo(video)}
-    >
-      <Card.Img variant="top" src={video.snippet.thumbnails.high.url} />
-      <Card.Body>
-        <Card.Title
-          style={{
-            height: "3rem",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {video.snippet.title}
-        </Card.Title>
-        <Card.Subtitle className="py-2 font-weight-normal font-italic">
-          {parseDate(video.snippet.publishedAt)}
-        </Card.Subtitle>
+    <Card className="w-auto hover-cursor" onClick={() => handleSetVideo(video)}>
+      <Row className="mx-0">
+        <Col className="pr-0 pt-4 pt-md-0 pl-md-0" xs={4} md={12}>
+          <Card.Img src={video.snippet.thumbnails.high.url} />
+        </Col>
+        <Col className="p-0" xs={8} md={12}>
+          <Card.Body>
+            <Card.Title
+              style={{
+                height: "3rem",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {video.snippet.title}
+            </Card.Title>
+            <Card.Subtitle className="pb-2 font-weight-light font-italic">
+              {parseDate(video.snippet.publishedAt)}
+            </Card.Subtitle>
 
-        <Card.Text
-          style={{
-            height: "6rem",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {video.snippet.description}
-        </Card.Text>
-      </Card.Body>
+            <Card.Text
+              style={{
+                height: "6rem",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {video.snippet.description}
+            </Card.Text>
+          </Card.Body>
+        </Col>
+      </Row>
     </Card>
   );
 };

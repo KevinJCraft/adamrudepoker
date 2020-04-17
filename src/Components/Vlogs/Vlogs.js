@@ -46,7 +46,7 @@ const Vlogs = () => {
 
   const parseDate = (str) => {
     let date = new Date(str);
-    return date.toDateString();
+    return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
   };
 
   const handlePageChange = (token) => {
@@ -61,8 +61,8 @@ const Vlogs = () => {
       <Row className="justify-content-around p-2 mb-4">
         {focusVideo ? (
           <Card className="w-100">
-            <Card.Body>
-              <div class="embed-responsive embed-responsive-16by9">
+            <Card.Body className="p-1 p-md-3">
+              <div className="embed-responsive embed-responsive-16by9 mb-3">
                 <iframe
                   width="100%"
                   height="100%"
@@ -75,7 +75,7 @@ const Vlogs = () => {
               </div>
 
               <Card.Title>{focusVideo.snippet.title}</Card.Title>
-              <Card.Subtitle className="py-2 font-weight-normal font-italic">
+              <Card.Subtitle className="pb-2 font-weight-light font-italic">
                 {parseDate(focusVideo.snippet.publishedAt)}
               </Card.Subtitle>
               <Card.Text>{focusVideo.snippet.description}</Card.Text>
