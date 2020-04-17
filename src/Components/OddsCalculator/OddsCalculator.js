@@ -198,6 +198,7 @@ const OddsCalculator = () => {
     ]);
     setDeck(new Deck());
     setBoard({ cards: [], key: shortid() });
+    setFocusIndex("first-player");
   };
 
   const handleFocusClick = (event, index) => {
