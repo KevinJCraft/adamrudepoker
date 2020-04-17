@@ -29,9 +29,9 @@ const AdamRudePoker = () => {
                   component={OddsCalculator}
                 />
                 <Route path="/Vlogs" exact component={Vlogs} />
-                <Route path="/ContactMe" exact component={ContactMe} />
               </Switch>
             </div>
+            <ContactMe />
           </Container>
           <Footer />
         </MenuContext.Provider>

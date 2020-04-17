@@ -42,11 +42,6 @@ const Nav = () => {
             Calculator
           </NavLink>
         </li>
-        <li>
-          <NavLink to="./contactme" onClick={closeMenu}>
-            Contact Me
-          </NavLink>
-        </li>
       </ul>
     </div>
   );
