@@ -27,7 +27,7 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
               {video.snippet.title}
             </Card.Title>
             <Card.Subtitle className="pb-2 font-weight-light font-italic">
-              {parseDate(video.snippet.publishedAt)}
+              {parseDate(video.contentDetails.videoPublishedAt)}
             </Card.Subtitle>
 
             <Card.Text

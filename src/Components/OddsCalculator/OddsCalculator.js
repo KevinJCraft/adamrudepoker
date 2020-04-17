@@ -141,7 +141,6 @@ const OddsCalculator = () => {
     }
     players.forEach((player) => {
       if (player.cards.length === 0) {
-        console.log("welp");
         deletePlayer(player);
       }
     });
@@ -168,7 +167,6 @@ const OddsCalculator = () => {
 
     const results = Table.calculate();
 
-    console.log(results);
     let newPlayers = [...players];
     let iterations = results.result.iterations;
     results.result.players.forEach((playerResult, index) => {
@@ -238,6 +236,7 @@ const OddsCalculator = () => {
         {players.map((player, index) => (
           <PlayerBlock
             player={player}
+            numOfPlayers={players.length}
             key={player.index}
             handleClick={(event) => handleFocusClick(event, player.index)}
             handleDeletePlayer={handleDeletePlayer}

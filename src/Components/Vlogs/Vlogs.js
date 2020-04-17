@@ -19,7 +19,7 @@ const Vlogs = () => {
         .get("playlistItems", {
           params: {
             playlistId: "PL12Qc3qxEnMenhTE0JYaxAlUN0XgrYWL0",
-            part: "snippet",
+            part: "snippet, contentDetails",
             maxResults: 12,
             key: process.env.REACT_APP_YOUTUBE_API_KEY,
             pageToken,
@@ -46,7 +46,7 @@ const Vlogs = () => {
 
   const parseDate = (str) => {
     let date = new Date(str);
-    return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   };
 
   const handlePageChange = (token) => {
@@ -84,6 +84,7 @@ const Vlogs = () => {
         )}
       </Row>
       <Row>
+        {console.log(videos)}
         {videos &&
           videos.map(
             (video) =>

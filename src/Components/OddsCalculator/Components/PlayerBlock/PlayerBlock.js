@@ -10,6 +10,7 @@ const defaultCard = { color: "purple", rankName: "", suit: "" };
 
 const PlayerBlock = ({
   player,
+  numOfPlayers,
   handleClick,
   isFocused,
   index,
@@ -50,17 +51,19 @@ const PlayerBlock = ({
           {player.tiePercent && `TIE: ${player.tiePercent}`}
         </Badge>
       </Col>
-      <Col
-        xs="auto"
-        className="d-flex align-items-center justify-content-around p-0 p-sm-2"
-      >
-        <Button
-          onClick={(event) => handleDeletePlayer(event, player)}
-          variant="danger"
+      {numOfPlayers > 2 && (
+        <Col
+          xs="auto"
+          className="d-flex align-items-center justify-content-around p-0 p-sm-2"
         >
-          X
-        </Button>
-      </Col>
+          <Button
+            onClick={(event) => handleDeletePlayer(event, player)}
+            variant="danger"
+          >
+            X
+          </Button>
+        </Col>
+      )}
     </Row>
   );
 };
