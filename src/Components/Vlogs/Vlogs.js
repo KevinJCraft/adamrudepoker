@@ -18,7 +18,7 @@ const Vlogs = () => {
       youtube
         .get("playlistItems", {
           params: {
-            playlistId: "PL12Qc3qxEnMenhTE0JYaxAlUN0XgrYWL0",
+            playlistId: "UUFDd5xkTKs7BDCjvGeUl2iQ",
             part: "snippet, contentDetails",
             maxResults: 12,
             key: process.env.REACT_APP_YOUTUBE_API_KEY,
