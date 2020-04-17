@@ -215,7 +215,7 @@ const OddsCalculator = () => {
     handleClearCards();
   }, []);
   return (
-    <div className="Calculator text-center mx-auto">
+    <div className="Calculator text-center mx-auto mb-4">
       <MenuButton />
 
       <Row>

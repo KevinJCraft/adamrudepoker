@@ -5,7 +5,7 @@ import shopPic2 from "../../Assets/img/shopSoRude2.png";
 import shopPic3 from "../../Assets/img/shopSoRude3.png";
 import Button from "react-bootstrap/Button";
 
-const HeroCarousel = () => {
+const ShopCarousel = () => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -18,7 +18,9 @@ const HeroCarousel = () => {
         <img className="d-block w-100" src={shopPic} alt="First slide" />
         <Carousel.Caption>
           <h3>Visit ShopSoRude.com for more merch</h3>
-          <Button variant="info">Shop Now</Button>
+          <Button href="https://shopsorude.com/" target="_blank" variant="info">
+            Shop Now
+          </Button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -26,7 +28,9 @@ const HeroCarousel = () => {
 
         <Carousel.Caption>
           <h3>Visit ShopSoRude.com for more merch</h3>
-          <Button variant="info">Shop Now</Button>
+          <Button href="https://shopsorude.com/" target="_blank" variant="info">
+            Shop Now
+          </Button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,11 +38,13 @@ const HeroCarousel = () => {
 
         <Carousel.Caption>
           <h3>Visit ShopSoRude.com for more merch</h3>
-          <Button variant="info">Shop Now</Button>
+          <Button href="https://shopsorude.com/" target="_blank" variant="info">
+            Shop Now
+          </Button>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );
 };
 
-export default HeroCarousel;
+export default ShopCarousel;

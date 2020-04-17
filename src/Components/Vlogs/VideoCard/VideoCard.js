@@ -12,11 +12,11 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
   return (
     <Card className="w-auto hover-cursor" onClick={() => handleSetVideo(video)}>
       <Row className="mx-0">
-        <Col className="pr-0 pt-4 pt-md-0 pl-md-0" xs={4} md={12}>
+        <Col className="p-0" xs={4} md={12}>
           <Card.Img src={video.snippet.thumbnails.high.url} />
         </Col>
         <Col className="p-0" xs={8} md={12}>
-          <Card.Body>
+          <Card.Body className="p-1 p-md-3">
             <Card.Title
               style={{
                 height: "3rem",
@@ -31,6 +31,7 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
             </Card.Subtitle>
 
             <Card.Text
+              className=" d-none d-md-block"
               style={{
                 height: "6rem",
                 overflow: "hidden",

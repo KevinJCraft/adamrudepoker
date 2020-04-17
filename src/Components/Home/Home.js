@@ -1,15 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import MenuButton from "../MenuButton";
-import HeroCarousel from "../HeroCarousel";
+import HeroCarousel from "../ShopCarousel";
 import "./home.css";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 
 const Home = () => {
-  //const el = useLoadingEffect("fade");
-  //const name = useLoadingEffect("moveleft");
-  // title = useLoadingEffect("moveup");
-
+  const history = useHistory();
   return (
     <>
       <MenuButton />
@@ -21,9 +20,14 @@ const Home = () => {
           calculator and show your dummy friend that he was behind the whole
           way!
         </p>
-        <p>
-          <Button variant="outline-primary">Go to Calculator</Button>
-        </p>
+        <Row className="justify-content-end mx-0">
+          <Button
+            onClick={() => history.push("/OddsCalculator")}
+            variant="outline-primary"
+          >
+            Go to Calculator
+          </Button>
+        </Row>
       </Jumbotron>
     </>
   );
