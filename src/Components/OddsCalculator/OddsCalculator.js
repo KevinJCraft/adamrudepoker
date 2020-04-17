@@ -20,7 +20,7 @@ const INITIAL_DECK_STATE = new Deck();
 
 const OddsCalculator = () => {
   const [players, setPlayers] = useState([
-    { ...INITIAL_PLAYER_STATE, index: shortid() },
+    { ...INITIAL_PLAYER_STATE, index: "first-player" },
     { ...INITIAL_PLAYER_STATE, index: shortid() },
   ]);
   const [focusIndex, setFocusIndex] = useState(players[0].index);
@@ -193,7 +193,7 @@ const OddsCalculator = () => {
 
   const handleClearCards = () => {
     setPlayers([
-      { ...INITIAL_PLAYER_STATE, index: shortid() },
+      { ...INITIAL_PLAYER_STATE, index: "first-player" },
       { ...INITIAL_PLAYER_STATE, index: shortid() },
     ]);
     setDeck(new Deck());
