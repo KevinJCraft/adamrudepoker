@@ -44,4 +44,5 @@ app.post("/api/email", (req, res, next) => {
     });
 });
 
+console.log("Server is Running");
 app.listen(3030, "0.0.0.0");

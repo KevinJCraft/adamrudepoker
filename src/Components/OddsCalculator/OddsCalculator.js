@@ -11,7 +11,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
-import MenuButton from "../MenuButton";
 
 const INITIAL_BOARD_STATE = { cards: [], index: "board" };
 const INITIAL_PLAYER_STATE = { cards: [], winPercent: null, tiePercent: null };
@@ -154,7 +153,7 @@ const OddsCalculator = () => {
       }
     });
     if (numOfEligiblePlayers < 2) {
-      alert("Must have at least 2 playes with 2 cards each");
+      alert("Must have at least 2 players with 2 cards each");
       return;
     }
     if (board.cards.length > 0) {
@@ -214,8 +213,6 @@ const OddsCalculator = () => {
   }, []);
   return (
     <div className="Calculator text-center mx-auto mb-4">
-      <MenuButton />
-
       <Row>
         <Col xs={12} md={6} className="mb-4">
           <Header />

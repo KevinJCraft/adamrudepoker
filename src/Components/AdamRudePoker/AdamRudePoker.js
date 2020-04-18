@@ -10,6 +10,8 @@ import Footer from "../Footer";
 import Container from "react-bootstrap/Container";
 
 import { MenuContext } from "../../Context/MenuContext";
+import HeroSection from "../HeroSection/HeroSection";
+import MenuButton from "../MenuButton";
 
 const AdamRudePoker = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +21,9 @@ const AdamRudePoker = () => {
       <Router>
         <MenuContext.Provider value={{ isMenuOpen, setIsMenuOpen }}>
           <Nav />
+          <MenuButton />
           <Container style={{ flex: 1 }}>
+            <HeroSection />
             <div className="AR-main-content">
               <Switch>
                 <Route path="/" exact component={Home} />

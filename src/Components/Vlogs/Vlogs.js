@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 import youtube from "../../APIs/YouTube_Api";
-import MenuButton from "../MenuButton";
 import VideoCard from "./VideoCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -28,7 +27,6 @@ const Vlogs = () => {
           },
         })
         .then((obj) => {
-          console.log("fetched");
           setVideos(obj.data.items);
           setPrevPageToken(
             obj.data.prevPageToken ? obj.data.prevPageToken : ""
@@ -58,7 +56,6 @@ const Vlogs = () => {
   };
   return (
     <div>
-      <MenuButton />
       <Row className="justify-content-around p-2 mb-4">
         {error && <h1>{error.message}</h1>}
         {focusVideo ? (

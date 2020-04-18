@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import shopPic from "../../Assets/img/shopSoRude.png";
+import shopPic from "../../Assets/img/shopSoRude1.png";
 import shopPic2 from "../../Assets/img/shopSoRude2.png";
 import shopPic3 from "../../Assets/img/shopSoRude3.png";
 import Button from "react-bootstrap/Button";

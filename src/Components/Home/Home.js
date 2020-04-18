@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import MenuButton from "../MenuButton";
 import HeroCarousel from "../ShopCarousel";
 import "./home.css";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -11,7 +10,6 @@ const Home = () => {
   const history = useHistory();
   return (
     <>
-      <MenuButton />
       <HeroCarousel />
       <Jumbotron className="mt-3">
         <h1>"I'm No Mathematician"</h1>
