@@ -12,9 +12,11 @@ const Vlogs = () => {
   const [videos, setVideos] = useState();
   const [prevPageToken, setPrevPageToken] = useState();
   const [nextPageToken, setNextPageToken] = useState();
+  const [currentPage, setCurrentPage] = useState();
   const [focusVideo, setFocusVideo] = useState();
+  const [error, setError] = useState();
   const getFeed = useCallback(
-    async (pageToken = "") => {
+    async (pageToken = currentPage) => {
       youtube
         .get("playlistItems", {
           params: {
@@ -26,6 +28,7 @@ const Vlogs = () => {
           },
         })
         .then((obj) => {
+          console.log("fetched");
           setVideos(obj.data.items);
           setPrevPageToken(
             obj.data.prevPageToken ? obj.data.prevPageToken : ""
@@ -35,9 +38,9 @@ const Vlogs = () => {
           );
           if (!focusVideo) setFocusVideo(obj.data.items[0]);
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => setError(err));
     },
-    [focusVideo]
+    [focusVideo, currentPage]
   );
 
   useEffect(() => {
@@ -50,13 +53,14 @@ const Vlogs = () => {
   };
 
   const handlePageChange = (token) => {
-    getFeed(token);
+    setCurrentPage(token);
     window.scrollTo(0, 0);
   };
   return (
     <div>
       <MenuButton />
       <Row className="justify-content-around p-2 mb-4">
+        {error && <h1>{error.message}</h1>}
         {focusVideo ? (
           <Card className="w-100">
             <Card.Body className="p-1 p-md-3">
@@ -84,7 +88,6 @@ const Vlogs = () => {
         )}
       </Row>
       <Row>
-        {console.log(videos)}
         {videos &&
           videos.map(
             (video) =>

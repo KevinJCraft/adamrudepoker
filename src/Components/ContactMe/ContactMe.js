@@ -79,8 +79,8 @@ const ContactMe = () => {
   } = useFormValidation(INITIAL_STATE, sendMail);
 
   return (
-    <Form onSubmit={handleSubmit} className="mx-auto mb-4 p-3 bg-info">
-      <Row className="d-flex justify-content-around py-3 text-white">
+    <Form onSubmit={handleSubmit} className="mx-auto  p-3 bg-info">
+      <Row className="d-flex justify-content-around  text-white">
         <h3>Contact Me</h3>
       </Row>
       <Row>

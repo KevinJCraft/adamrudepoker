@@ -16,7 +16,7 @@ const VideoCard = ({ video, setFocusVideo, parseDate }) => {
           <Card.Img src={video.snippet.thumbnails.high.url} />
         </Col>
         <Col className="p-0" xs={8} md={12}>
-          <Card.Body className="p-1 p-md-3">
+          <Card.Body className="px-1 py-0 p-md-3">
             <Card.Title
               style={{
                 height: "3rem",

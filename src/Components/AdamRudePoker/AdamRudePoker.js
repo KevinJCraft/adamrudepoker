@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./AdamRudePoker.css";
 import Home from "../Home";
 import OddsCalculator from "../OddsCalculator";
-import ContactMe from "../ContactMe";
+import NoPath from "../NoPath";
 import Vlogs from "../Vlogs";
 import Nav from "../Nav";
 import Footer from "../Footer";
@@ -29,9 +29,9 @@ const AdamRudePoker = () => {
                   component={OddsCalculator}
                 />
                 <Route path="/Vlogs" exact component={Vlogs} />
+                <Route path="*" component={NoPath} />
               </Switch>
             </div>
-            <ContactMe />
           </Container>
           <Footer />
         </MenuContext.Provider>
