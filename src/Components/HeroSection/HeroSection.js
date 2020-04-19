@@ -32,7 +32,7 @@ const HeroSection = () => {
   }, [getFeed]);
 
   return channelData ? (
-    <Row className=" m-0  position-relative ">
+    <Row className="my-5 mx-0  position-relative ">
       <div
         className="position-absolute w-100 h-100"
         style={{
