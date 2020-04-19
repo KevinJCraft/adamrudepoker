@@ -15,6 +15,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Badge from "react-bootstrap/Badge";
 
 const INITIAL_STATE = {
   name: "",
@@ -79,7 +80,7 @@ const ContactMe = () => {
   } = useFormValidation(INITIAL_STATE, sendMail);
 
   return (
-    <Form onSubmit={handleSubmit} className="mx-auto  p-3 bg-info">
+    <Form onSubmit={handleSubmit} className="mx-auto  p-3 bg-info text-white">
       <Row className="d-flex justify-content-around  text-white">
         <h3>Contact Me</h3>
       </Row>
@@ -129,18 +130,23 @@ const ContactMe = () => {
         {errors.message && <p className="error-message">{errors.message}</p>}
       </Form.Group>
       <Row className="mt-5">
-        <Col>
+        <Col xs={6} md={7}>
           <div className="completion-message-container ">
             {formCompletion.wasCompleted && (
-              <p className="submitted">Email Sent</p>
+              <Badge variant="success" className="p-1">
+                Email Sent
+              </Badge>
             )}
             {formCompletion.errorMessage && (
-              <p className="not-submitted">{formCompletion.errorMessage}</p>
+              <Badge variant="danger" className="p-1">
+                Message not sent. Server Error.
+              </Badge>
             )}
           </div>
         </Col>
-        <Col>
+        <Col xs={6} md={4}>
           <Button
+            variant="light"
             className="w-100 "
             size="lg"
             name="submit"
@@ -149,7 +155,7 @@ const ContactMe = () => {
             onClick={handleSubmit}
           >
             {" "}
-            <MdSend fill="white" />{" "}
+            <MdSend fill="#17a2b8" />{" "}
           </Button>
         </Col>
       </Row>

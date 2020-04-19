@@ -42,6 +42,16 @@ const Nav = () => {
             Calculator
           </NavLink>
         </li>
+        <li>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://shopsorude.com/"
+            onClick={closeMenu}
+          >
+            ShopSoRude
+          </a>
+        </li>
       </ul>
     </div>
   );

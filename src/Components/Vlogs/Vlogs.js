@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import youtube from "../../APIs/YouTube_Api";
 import VideoCard from "./VideoCard";
 import Row from "react-bootstrap/Row";
@@ -14,6 +14,8 @@ const Vlogs = () => {
   const [currentPage, setCurrentPage] = useState();
   const [focusVideo, setFocusVideo] = useState();
   const [error, setError] = useState();
+  const videoPlayer = useRef();
+  const videoList = useRef();
   const getFeed = useCallback(
     async (pageToken = currentPage) => {
       youtube
@@ -52,14 +54,18 @@ const Vlogs = () => {
 
   const handlePageChange = (token) => {
     setCurrentPage(token);
-    window.scrollTo(0, 0);
+    videoList.current.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleSetFocusVideo = (videoToSet) => {
+    setFocusVideo(videoToSet);
+    videoPlayer.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
     <div>
       <Row className="justify-content-around p-2 mb-4">
         {error && <h1>{error.message}</h1>}
         {focusVideo ? (
-          <Card className="w-100">
+          <Card ref={videoPlayer} className="w-100">
             <Card.Body className="p-1 p-md-3">
               <div className="embed-responsive embed-responsive-16by9 mb-3">
                 <iframe
@@ -84,7 +90,7 @@ const Vlogs = () => {
           <Spinner animation="border" />
         )}
       </Row>
-      <Row>
+      <Row ref={videoList} className="pt-4">
         {videos &&
           videos.map(
             (video) =>
@@ -98,7 +104,7 @@ const Vlogs = () => {
                   key={video.id}
                 >
                   <VideoCard
-                    setFocusVideo={setFocusVideo}
+                    handleSetFocusVideo={handleSetFocusVideo}
                     video={video}
                     parseDate={parseDate}
                   />

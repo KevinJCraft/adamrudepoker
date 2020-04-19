@@ -4,13 +4,12 @@ import "./VideoCard.css";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-const VideoCard = ({ video, setFocusVideo, parseDate }) => {
-  const handleSetVideo = (videoToSet) => {
-    setFocusVideo(videoToSet);
-    window.scrollTo(0, 0);
-  };
+const VideoCard = ({ video, handleSetFocusVideo, parseDate }) => {
   return (
-    <Card className="w-auto hover-cursor" onClick={() => handleSetVideo(video)}>
+    <Card
+      className="w-auto hover-cursor"
+      onClick={() => handleSetFocusVideo(video)}
+    >
       <Row className="mx-0">
         <Col className="p-0" xs={4} md={12}>
           <Card.Img src={video.snippet.thumbnails.high.url} />

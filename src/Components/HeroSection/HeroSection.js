@@ -23,12 +23,16 @@ const HeroSection = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const formatNumbers = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   useEffect(() => {
     getFeed();
   }, [getFeed]);
 
   return channelData ? (
-    <Row className=" m-0 position-relative ">
+    <Row className=" m-0  position-relative ">
       <div
         className="position-absolute w-100 h-100"
         style={{
@@ -38,9 +42,8 @@ const HeroSection = () => {
         }}
         src={channelData.brandingSettings.image.bannerTvImageUrl}
       ></div>
-      {console.log(channelData)}
-      <Row className="p-5">
-        <Col xs={{ span: 8, offset: 2 }} md={4}>
+      <Row className="py-4 p-md-5">
+        <Col xs={{ span: 8, offset: 2 }} md={{ span: 4, offset: 0 }}>
           <Image
             roundedCircle
             src={channelData.snippet.thumbnails.high.url}
@@ -48,7 +51,7 @@ const HeroSection = () => {
           ></Image>
         </Col>
         <Col
-          className="font-weight-bold pt-5 pt-md-0 py-lg-5 d-flex flex-column justify-content-around "
+          className="font-weight-bold pt-3 pt-md-0 py-lg-5 d-flex flex-column justify-content-around "
           style={{ fontWeight: "10000" }}
         >
           <h1 className=" text-center text-md-left pl-md-5">
@@ -59,13 +62,14 @@ const HeroSection = () => {
           </p>
           <Row className="m-0  pl-md-5">
             <Badge variant="secondary" className="d-block mx-auto mx-md-0 p-2 ">
-              subscribers: {channelData.statistics.subscriberCount}
+              subscribers:{" "}
+              {formatNumbers(channelData.statistics.subscriberCount)}
             </Badge>
             <Badge
               variant="secondary"
               className="d-block mx-auto mx-md-0 p-2 ml-md-3 "
             >
-              total views: {channelData.statistics.viewCount}
+              total views: {formatNumbers(channelData.statistics.viewCount)}
             </Badge>
           </Row>
         </Col>
