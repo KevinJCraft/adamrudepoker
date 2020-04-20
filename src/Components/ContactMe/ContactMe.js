@@ -1,4 +1,4 @@
-// to make sendgrid functional in development environement..
+// to make sendgrid functional in development environement (requires API_Key)..
 // 1. cd into root directory in seperate terminal
 // 2. run 'source sendgrid.env'
 // 3. run 'cd ./src/APIs/Email_Api'
@@ -15,7 +15,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Badge from "react-bootstrap/Badge";
+import Alert from "react-bootstrap/Alert";
 
 const INITIAL_STATE = {
   name: "",
@@ -133,14 +133,14 @@ const ContactMe = () => {
         <Col xs={6} md={7}>
           <div className="completion-message-container ">
             {formCompletion.wasCompleted && (
-              <Badge variant="success" className="p-1">
+              <Alert variant="success" className="d-inline p-3">
                 Email Sent
-              </Badge>
+              </Alert>
             )}
             {formCompletion.errorMessage && (
-              <Badge variant="danger" className="p-1">
+              <Alert variant="danger" className="d-inline p-3">
                 Message not sent. Server Error.
-              </Badge>
+              </Alert>
             )}
           </div>
         </Col>

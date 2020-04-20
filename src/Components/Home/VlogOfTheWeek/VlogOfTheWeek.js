@@ -20,7 +20,6 @@ const VlogOfTheWeek = () => {
         },
       })
       .then((obj) => {
-        console.log(obj);
         setVideoId(obj.data.items[0].contentDetails.videoId);
       })
       .catch((err) => console.log(err));
