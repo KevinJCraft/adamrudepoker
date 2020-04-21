@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Spinner from "react-bootstrap/Spinner";
 import Badge from "react-bootstrap/Badge";
@@ -36,92 +37,98 @@ const HeroSection = () => {
 
   return channelData ? (
     <>
-      <Row className="mt-5 mx-0  position-relative ">
+      <Row className=" mx-0  position-relative ">
         <div
-          className="position-absolute w-100 h-100"
+          className="position-absolute h-100 w-100"
           style={{
             background: `url(${channelData.brandingSettings.image.bannerTvImageUrl}) lightgrey`,
             backgroundSize: "cover",
-            opacity: ".3",
+            backgroundPosition: "center",
+            opacity: ".5",
+            bottom: "0",
           }}
           src={channelData.brandingSettings.image.bannerTvImageUrl}
         ></div>
-        <Row className="py-4 p-md-5">
-          <Col xs={{ span: 8, offset: 2 }} md={{ span: 4, offset: 0 }}>
-            <Image
-              roundedCircle
-              src={channelData.snippet.thumbnails.high.url}
-              className="w-100 border border-light"
-            ></Image>
-          </Col>
-          <Col
-            className="font-weight-bold pt-3 pt-md-0 py-lg-5 d-flex flex-column justify-content-around "
-            style={{ fontWeight: "10000" }}
+        <Container>
+          <Row className="py-4 p-md-5">
+            <Col xs={{ span: 8, offset: 2 }} md={{ span: 4, offset: 0 }}>
+              <Image
+                roundedCircle
+                src={channelData.snippet.thumbnails.high.url}
+                className="w-100 h-100 border border-light"
+              ></Image>
+            </Col>
+            <Col
+              className="font-weight-bold pt-3 pt-md-0 py-lg-5 d-flex flex-column justify-content-around "
+              style={{ fontWeight: "10000" }}
+            >
+              <h1 className=" text-center text-md-left pl-md-5">
+                {channelData.snippet.title}
+              </h1>
+              <p className=" text-center text-md-left pl-md-5">
+                "{channelData.snippet.description}"
+              </p>
+              <Row className="m-0  pl-md-5">
+                <Badge
+                  variant="secondary"
+                  className="d-block mx-auto mx-md-0 p-2 "
+                >
+                  subscribers:{" "}
+                  {formatNumbers(channelData.statistics.subscriberCount)}
+                </Badge>
+                <Badge
+                  variant="secondary"
+                  className="d-block mx-auto mx-md-0 p-2 ml-md-3 "
+                >
+                  total views: {formatNumbers(channelData.statistics.viewCount)}
+                </Badge>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </Row>
+      <Container className="mb-5">
+        <Row className=" justify-content-around justify-content-md-end ">
+          <IconContext.Provider
+            value={{ color: "gunmetal", className: "global-class-name" }}
           >
-            <h1 className=" text-center text-md-left pl-md-5">
-              {channelData.snippet.title}
-            </h1>
-            <p className=" text-center text-md-left pl-md-5">
-              "{channelData.snippet.description}"
-            </p>
-            <Row className="m-0  pl-md-5">
-              <Badge
-                variant="secondary"
-                className="d-block mx-auto mx-md-0 p-2 "
+            <ListGroup horizontal className="h3 mr-md-5 bg-none">
+              <ListGroup.Item
+                className="border-0"
+                action
+                href="https://twitter.com"
+                target="_blank"
               >
-                subscribers:{" "}
-                {formatNumbers(channelData.statistics.subscriberCount)}
-              </Badge>
-              <Badge
-                variant="secondary"
-                className="d-block mx-auto mx-md-0 p-2 ml-md-3 "
+                <FaTwitter />
+              </ListGroup.Item>
+              <ListGroup.Item
+                className="border-0"
+                action
+                href="https://twitter.com"
+                target="_blank"
               >
-                total views: {formatNumbers(channelData.statistics.viewCount)}
-              </Badge>
-            </Row>
-          </Col>
+                <FaFacebook />
+              </ListGroup.Item>
+              <ListGroup.Item
+                className="border-0"
+                action
+                href="https://twitter.com"
+                target="_blank"
+              >
+                <FaInstagram />
+              </ListGroup.Item>
+              <ListGroup.Item
+                className="border-0"
+                action
+                href="https://twitter.com"
+                target="_blank"
+              >
+                <FaYoutube />
+              </ListGroup.Item>
+            </ListGroup>
+          </IconContext.Provider>
         </Row>
-      </Row>
-      <Row className=" justify-content-around justify-content-md-end ">
-        <IconContext.Provider
-          value={{ color: "gunmetal", className: "global-class-name" }}
-        >
-          <ListGroup horizontal className="h3 mr-md-5 bg-none">
-            <ListGroup.Item
-              className="border-0"
-              action
-              href="https://twitter.com"
-              target="_blank"
-            >
-              <FaTwitter />
-            </ListGroup.Item>
-            <ListGroup.Item
-              className="border-0"
-              action
-              href="https://twitter.com"
-              target="_blank"
-            >
-              <FaFacebook />
-            </ListGroup.Item>
-            <ListGroup.Item
-              className="border-0"
-              action
-              href="https://twitter.com"
-              target="_blank"
-            >
-              <FaInstagram />
-            </ListGroup.Item>
-            <ListGroup.Item
-              className="border-0"
-              action
-              href="https://twitter.com"
-              target="_blank"
-            >
-              <FaYoutube />
-            </ListGroup.Item>
-          </ListGroup>
-        </IconContext.Provider>
-      </Row>
+      </Container>
     </>
   ) : (
     <Spinner />

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import youtube from "../../APIs/YouTube_Api";
 import VideoCard from "./VideoCard";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -61,11 +62,11 @@ const Vlogs = () => {
     videoPlayer.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <div>
+    <Container>
       <Row className="justify-content-around p-2 mb-4">
         {error && <h1>{error.message}</h1>}
         {focusVideo ? (
-          <Card ref={videoPlayer} className="w-100">
+          <Card ref={videoPlayer}>
             <Card.Body className="p-1 p-md-3">
               <div className="embed-responsive embed-responsive-16by9 mb-3">
                 <iframe
@@ -131,7 +132,7 @@ const Vlogs = () => {
           </Button>
         </span>
       </Row>
-    </div>
+    </Container>
   );
 };
 

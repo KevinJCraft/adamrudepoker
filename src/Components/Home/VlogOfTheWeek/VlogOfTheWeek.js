@@ -30,7 +30,7 @@ const VlogOfTheWeek = () => {
   }, [getVideoId]);
 
   return videoId ? (
-    <Jumbotron className="mb-5 ">
+    <Jumbotron className="my-3 w-100 ">
       <h2 className="p-3">Vlog of the week!</h2>
       <div className=" w-100 embed-responsive embed-responsive-16by9 mb-3">
         <iframe

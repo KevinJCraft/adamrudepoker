@@ -15,7 +15,7 @@ const Home = () => {
       <VlogOfTheWeek />
       <ShopCarousel />
 
-      <Jumbotron className="mt-3">
+      <Jumbotron className="mt-3 w-100">
         <h1>"I'm No Mathematician"</h1>
         <p>
           ...and neither are you, dummy. Now, check out my Hold'em odds

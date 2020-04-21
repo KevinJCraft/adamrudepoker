@@ -9,6 +9,7 @@ import shortid from "shortid";
 import { TexasHoldem } from "poker-odds-calc";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
@@ -212,7 +213,7 @@ const OddsCalculator = () => {
     handleClearCards();
   }, []);
   return (
-    <div className="Calculator text-center mx-auto mb-4">
+    <Container className="Calculator text-center mx-auto mb-4">
       <Row>
         <Col xs={12} md={6} className="mb-4">
           <Header />
@@ -257,7 +258,7 @@ const OddsCalculator = () => {
           deck={deck}
         />
       </Row>
-    </div>
+    </Container>
   );
 };
 
