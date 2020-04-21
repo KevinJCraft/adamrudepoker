@@ -7,15 +7,18 @@ import Row from "react-bootstrap/Row";
 const VideoCard = ({ video, handleSetFocusVideo, parseDate }) => {
   return (
     <Card
-      className="w-auto hover-cursor"
+      className="w-auto hover-cursor border-0 shadow p-0 rounded-0"
       onClick={() => handleSetFocusVideo(video)}
     >
-      <Row className="mx-0">
-        <Col className="p-0" xs={4} md={12}>
-          <Card.Img src={video.snippet.thumbnails.high.url} />
+      <Row className="mx-0 ">
+        <Col className="p-0 rounded-0" xs={4} md={12}>
+          <Card.Img
+            className="rounded-0"
+            src={video.snippet.thumbnails.high.url}
+          />
         </Col>
         <Col className="p-0" xs={8} md={12}>
-          <Card.Body className="px-1 py-0 p-md-3">
+          <Card.Body className="p-1 p-sm-3 p-md-3">
             <Card.Title
               style={{
                 height: "3rem",

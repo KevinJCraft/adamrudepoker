@@ -17,7 +17,7 @@ const ShopCarousel = () => {
       <Carousel.Item>
         <img className="d-block w-100" src={shopPic} alt="First slide" />
         <Carousel.Caption>
-          <h3>Visit ShopSoRude.com for more merch</h3>
+          <h3>Visit ShopSoRude.com</h3>
           <Button href="https://shopsorude.com/" target="_blank" variant="info">
             Shop Now
           </Button>
@@ -27,7 +27,7 @@ const ShopCarousel = () => {
         <img className="d-block w-100" src={shopPic2} alt="Second slide" />
 
         <Carousel.Caption>
-          <h3>Visit ShopSoRude.com for more merch</h3>
+          <h3>Visit ShopSoRude.com</h3>
           <Button href="https://shopsorude.com/" target="_blank" variant="info">
             Shop Now
           </Button>
@@ -37,7 +37,7 @@ const ShopCarousel = () => {
         <img className="d-block w-100" src={shopPic3} alt="Third slide" />
 
         <Carousel.Caption>
-          <h3>Visit ShopSoRude.com for more merch</h3>
+          <h3>Visit ShopSoRude.com</h3>
           <Button href="https://shopsorude.com/" target="_blank" variant="info">
             Shop Now
           </Button>

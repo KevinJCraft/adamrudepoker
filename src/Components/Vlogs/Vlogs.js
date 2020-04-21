@@ -63,11 +63,11 @@ const Vlogs = () => {
   };
   return (
     <Container>
-      <Row className="justify-content-around p-2 mb-4">
+      <Row className="justify-content-around mb-4">
         {error && <h1>{error.message}</h1>}
         {focusVideo ? (
-          <Card ref={videoPlayer}>
-            <Card.Body className="p-1 p-md-3">
+          <Card ref={videoPlayer} className="border-0 rounded-0 shadow">
+            <Card.Body className="p-0">
               <div className="embed-responsive embed-responsive-16by9 mb-3">
                 <iframe
                   width="100%"
@@ -79,12 +79,13 @@ const Vlogs = () => {
                   title="this"
                 ></iframe>
               </div>
-
-              <Card.Title>{focusVideo.snippet.title}</Card.Title>
-              <Card.Subtitle className="pb-2 font-weight-light font-italic">
-                {parseDate(focusVideo.snippet.publishedAt)}
-              </Card.Subtitle>
-              <Card.Text>{focusVideo.snippet.description}</Card.Text>
+              <div className="p-2 p-md-3">
+                <Card.Title>{focusVideo.snippet.title}</Card.Title>
+                <Card.Subtitle className="pb-2 font-weight-light font-italic">
+                  {parseDate(focusVideo.snippet.publishedAt)}
+                </Card.Subtitle>
+                <Card.Text>{focusVideo.snippet.description}</Card.Text>
+              </div>
             </Card.Body>
           </Card>
         ) : (
@@ -97,11 +98,11 @@ const Vlogs = () => {
             (video) =>
               video.snippet.title !== "Deleted video" && (
                 <Col
+                  className="mb-3  px-0 pt-2 px-md-3 "
                   xs={12}
                   md={6}
                   lg={4}
                   xl={3}
-                  style={{ paddingBottom: "1rem" }}
                   key={video.id}
                 >
                   <VideoCard
