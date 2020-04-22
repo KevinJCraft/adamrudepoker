@@ -5,10 +5,8 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Spinner from "react-bootstrap/Spinner";
 import Badge from "react-bootstrap/Badge";
-import ListGroup from "react-bootstrap/ListGroup";
 import youtube from "../../APIs/YouTube_Api";
-import { IconContext } from "react-icons";
-import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import SocialLinks from "../SocialLinks/SocialLinks";
 
 const HeroSection = () => {
   const [channelData, setChannelData] = useState();
@@ -87,48 +85,7 @@ const HeroSection = () => {
           </Row>
         </Container>
       </Row>
-      <Container className="mb-5">
-        <Row className=" justify-content-around justify-content-md-end ">
-          <IconContext.Provider
-            value={{ color: "gunmetal", className: "global-class-name" }}
-          >
-            <ListGroup horizontal className="h3 mr-md-5 bg-none">
-              <ListGroup.Item
-                className="border-0"
-                action
-                href="https://twitter.com"
-                target="_blank"
-              >
-                <FaTwitter />
-              </ListGroup.Item>
-              <ListGroup.Item
-                className="border-0"
-                action
-                href="https://twitter.com"
-                target="_blank"
-              >
-                <FaFacebook />
-              </ListGroup.Item>
-              <ListGroup.Item
-                className="border-0"
-                action
-                href="https://twitter.com"
-                target="_blank"
-              >
-                <FaInstagram />
-              </ListGroup.Item>
-              <ListGroup.Item
-                className="border-0"
-                action
-                href="https://twitter.com"
-                target="_blank"
-              >
-                <FaYoutube />
-              </ListGroup.Item>
-            </ListGroup>
-          </IconContext.Provider>
-        </Row>
-      </Container>
+      <SocialLinks />
     </>
   ) : (
     <Spinner />

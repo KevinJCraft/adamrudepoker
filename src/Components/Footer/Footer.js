@@ -3,8 +3,8 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <>
-      <footer>
-        <span>all rights reserved &copy;2020</span>
+      <footer className="bg-info">
+        <span className="text-white">all rights reserved &copy;2020</span>
       </footer>
     </>
   );

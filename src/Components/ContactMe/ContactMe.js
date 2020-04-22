@@ -82,7 +82,7 @@ const ContactMe = () => {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="mx-auto w-100  p-3 bg-info text-white"
+      className="mx-auto w-100  p-3 bg-secondary text-white"
     >
       <Row className="d-flex justify-content-around  text-white">
         <h3>Contact Me</h3>
@@ -158,7 +158,7 @@ const ContactMe = () => {
             onClick={handleSubmit}
           >
             {" "}
-            <MdSend fill="#17a2b8" />{" "}
+            <MdSend fill="#6c757d" />{" "}
           </Button>
         </Col>
       </Row>

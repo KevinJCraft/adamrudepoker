@@ -1,9 +1,9 @@
 .menu-button-container {
   width: 100%;
   text-align: right;
-  background: none;
-  top: 0;
-  left: 0;
+  background-color: transparent;
+  position: absolute;
+  z-index: 100;
 }
 
 .menu-button-container button {
