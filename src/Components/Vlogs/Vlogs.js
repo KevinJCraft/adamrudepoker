@@ -15,8 +15,8 @@ const Vlogs = () => {
   const [currentPage, setCurrentPage] = useState();
   const [focusVideo, setFocusVideo] = useState();
   const [error, setError] = useState();
-  const videoPlayer = useRef();
-  const videoList = useRef();
+  const videoPlayer = useRef(null);
+  const videoList = useRef(null);
   const getFeed = useCallback(
     async (pageToken = currentPage) => {
       youtube
@@ -30,6 +30,7 @@ const Vlogs = () => {
           },
         })
         .then((obj) => {
+          console.log("fetched");
           setVideos(obj.data.items);
           setPrevPageToken(
             obj.data.prevPageToken ? obj.data.prevPageToken : ""
@@ -37,16 +38,13 @@ const Vlogs = () => {
           setNextPageToken(
             obj.data.nextPageToken ? obj.data.nextPageToken : ""
           );
-          if (!focusVideo) setFocusVideo(obj.data.items[0]);
+          //set initial video on first render when there is no page token
+          if (!pageToken) setFocusVideo(obj.data.items[0]);
         })
         .catch((err) => setError(err));
     },
-    [focusVideo, currentPage]
+    [currentPage]
   );
-
-  useEffect(() => {
-    getFeed();
-  }, [getFeed]);
 
   const parseDate = (str) => {
     let date = new Date(str);
@@ -61,6 +59,9 @@ const Vlogs = () => {
     setFocusVideo(videoToSet);
     videoPlayer.current.scrollIntoView({ behavior: "smooth" });
   };
+  useEffect(() => {
+    getFeed();
+  }, [getFeed]);
   return (
     <Container>
       <Row className="justify-content-around mb-4">
