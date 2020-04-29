@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+
 import Header from "./Components/Header";
 import PlayerBlock from "./Components/PlayerBlock";
 import Deck from "./Utils/deck";
 import DisplayDeck from "./Components/DisplayDeck";
 import Board from "./Components/Board";
+
 import "./OddsCalculator.css";
 import shortid from "shortid";
 import { TexasHoldem } from "poker-odds-calc";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -15,7 +18,6 @@ import Button from "react-bootstrap/Button";
 
 const INITIAL_BOARD_STATE = { cards: [], index: "board" };
 const INITIAL_PLAYER_STATE = { cards: [], winPercent: null, tiePercent: null };
-
 const INITIAL_DECK_STATE = new Deck();
 
 const OddsCalculator = () => {
@@ -30,6 +32,7 @@ const OddsCalculator = () => {
   const setHoleCard = (card) => {
     const MAX_SIZE = focusIndex === "board" ? 5 : 2;
     if (card.location === focusIndex) {
+      //handles removal of card when click from a players hand or board
       removeCard(card);
     } else if (card.location === "deck") {
       let sizeOfHand = deck.cards.filter((card) => card.location === focusIndex)
@@ -49,12 +52,14 @@ const OddsCalculator = () => {
   };
 
   const removeCard = (card, indexToRemoveFrom = focusIndex) => {
+    // resets all results so inacurate results wont be shown after player removes a card
     players.forEach((player) => {
       if (player.winPercent) {
         resetResults();
       }
     });
     card.location = "deck";
+    //checks each player to see if they have the card that needs removed
     let newPlayers = [...players].map((player) => {
       if (player.index === indexToRemoveFrom) {
         let newPlayerCards = [...player.cards].filter((obj) => obj !== card);
@@ -67,6 +72,8 @@ const OddsCalculator = () => {
       }
     });
     setPlayers(newPlayers);
+
+    //checks if the card to be removed is in the deck
     if (indexToRemoveFrom === "board") {
       let newBoard = {
         ...board,
@@ -77,10 +84,12 @@ const OddsCalculator = () => {
   };
 
   const addCard = (card) => {
+    // resets all results so inacurate results wont be shown after player adds a card
     if (players[0].winPercent) resetResults();
 
     card.location = focusIndex;
 
+    //checks each player to see if they should get the card
     let newPlayers = [...players].map((player) => {
       if (player.index === card.location) {
         let newPlayerCards = [...player.cards, card];
@@ -94,6 +103,7 @@ const OddsCalculator = () => {
     });
     setPlayers(newPlayers);
 
+    //checks if the card should be added to the board
     if (focusIndex === "board") {
       let newBoard = {
         ...board,
@@ -112,7 +122,7 @@ const OddsCalculator = () => {
   };
 
   const handleDeletePlayer = (event, playerToDelete) => {
-    event.stopPropagation();
+    event.stopPropagation(); // stops event from triggering focus index on the player to be deleted
     deletePlayer(playerToDelete);
   };
 
@@ -133,6 +143,7 @@ const OddsCalculator = () => {
   };
 
   const handleCalculate = () => {
+    //board cannot contain a partial flop
     if (board.cards.length === 1 || board.cards.length === 2) {
       alert(
         "The Board cannot have an incomplete flop.  Try again with no board cards or at least 3"
@@ -169,10 +180,11 @@ const OddsCalculator = () => {
 
     let newPlayers = [...players];
     let iterations = results.result.iterations;
-    results.result.players.forEach((playerResult, index) => {
+    results.result.players.forEach((playerResult) => {
       newPlayers.forEach((newPlayer) => {
         if (newPlayer.cards.length > 0) {
           if (playerResult.player.hand[0].str === newPlayer.cards[0].name) {
+            //matches the correct results to the correct player
             newPlayer.winPercent = (
               (playerResult.wins / iterations) *
               100
@@ -191,20 +203,21 @@ const OddsCalculator = () => {
 
   const handleClearCards = () => {
     setPlayers([
-      { ...INITIAL_PLAYER_STATE, index: "first-player" },
+      { ...INITIAL_PLAYER_STATE, index: "first-player" }, //hard code first player index so that focus can easily be set on resets
       { ...INITIAL_PLAYER_STATE, index: shortid() },
     ]);
     setDeck(new Deck());
     setBoard({ cards: [], key: shortid() });
-    setFocusIndex("first-player");
+    setFocusIndex("first-player"); //See?  easy!
   };
 
   const handleFocusClick = (event, index) => {
+    //sets the hand that cards will be added to or removed from
     setFocusIndex(index);
   };
 
   const handleHoleCardClick = (event, card, index) => {
-    event.stopPropagation();
+    event.stopPropagation(); //stops focus being changed while clicking on cards in players hand or board
     if (card.rank) removeCard(card, index);
     else setFocusIndex(index);
   };
@@ -213,7 +226,7 @@ const OddsCalculator = () => {
     handleClearCards();
   }, []);
   return (
-    <Container className="Calculator text-center mx-auto mb-4">
+    <Container className="Calculator text-center mx-auto mb-4 py-4 ">
       <Row>
         <Col xs={12} md={6} className="mb-4">
           <Header />

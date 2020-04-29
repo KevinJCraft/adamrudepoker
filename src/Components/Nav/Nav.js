@@ -13,8 +13,10 @@ const Nav = () => {
     setIsMenuOpen(false);
   };
 
+  //custom hook to close the main nav when you press outide of it on mobile
   useOutsideClick(mainNav, closeMenu);
 
+  // forces rerender to show or hide main nav when appropriate
   useEffect(() => {
     if (isMenuOpen) {
       mainNav.current.classList.add("show");
@@ -25,7 +27,7 @@ const Nav = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className="main-nav" ref={mainNav}>
+    <div className="main-nav shadow" ref={mainNav}>
       <ul className="nav-internal-links">
         <li>
           <NavLink to="./" exact onClick={closeMenu}>

@@ -28,12 +28,12 @@ const VideoCard = ({ video, handleSetFocusVideo, parseDate }) => {
             >
               {video.snippet.title}
             </Card.Title>
-            <Card.Subtitle className="pb-2 font-weight-light font-italic">
+            <Card.Subtitle className="pb-2 font-weight-light font-italic text-muted">
               {parseDate(video.contentDetails.videoPublishedAt)}
             </Card.Subtitle>
 
             <Card.Text
-              className=" d-none d-md-block"
+              className=" d-none d-md-block text-muted"
               style={{
                 height: "6rem",
                 overflow: "hidden",

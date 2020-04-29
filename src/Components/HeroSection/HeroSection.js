@@ -10,6 +10,8 @@ import SocialLinks from "../SocialLinks/SocialLinks";
 
 const HeroSection = () => {
   const [channelData, setChannelData] = useState();
+
+  //gets channel data for header display
   const getFeed = useCallback(async () => {
     youtube
       .get("channels", {
@@ -25,6 +27,7 @@ const HeroSection = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  //formats large numbers with commas
   const formatNumbers = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };

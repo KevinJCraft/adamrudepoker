@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 
-const defaultCard = { color: "purple", rankName: "", suit: "" };
+const defaultCard = { color: "default", rankName: "", suit: "" };
 
 const PlayerBlock = ({
   player,

@@ -1,3 +1,7 @@
+.btn-outline-light:hover {
+  color: #6c757d;
+}
+
 .error {
   border: 1px solid red;
 }

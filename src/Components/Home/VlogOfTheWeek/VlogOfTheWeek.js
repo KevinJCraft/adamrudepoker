@@ -9,6 +9,8 @@ import youtube from "../../../APIs/YouTube_Api";
 const VlogOfTheWeek = () => {
   const [videoId, setVideoId] = useState();
   const history = useHistory();
+
+  //sets video id info for iframe playback
   const getVideoId = useCallback(async () => {
     youtube
       .get("playlistItems", {

@@ -17,20 +17,22 @@ const Vlogs = () => {
   const [error, setError] = useState();
   const videoPlayer = useRef(null);
   const videoList = useRef(null);
+
+  // fetches video list from youtube api
   const getFeed = useCallback(
     async (pageToken = currentPage) => {
+      console.log(pageToken);
       youtube
         .get("playlistItems", {
           params: {
             playlistId: "UUFDd5xkTKs7BDCjvGeUl2iQ",
-            part: "snippet, contentDetails",
+            part: "snippet, contentDetails, status",
             maxResults: 12,
             key: process.env.REACT_APP_YOUTUBE_API_KEY,
-            pageToken,
+            pageToken: pageToken,
           },
         })
         .then((obj) => {
-          console.log("fetched");
           setVideos(obj.data.items);
           setPrevPageToken(
             obj.data.prevPageToken ? obj.data.prevPageToken : ""
@@ -39,13 +41,20 @@ const Vlogs = () => {
             obj.data.nextPageToken ? obj.data.nextPageToken : ""
           );
           //set initial video on first render when there is no page token
-          if (!pageToken) setFocusVideo(obj.data.items[0]);
+          if (!pageToken)
+            setFocusVideo({
+              Id: obj.data.items[0].snippet.resourceId.videoId,
+              title: obj.data.items[0].snippet.title,
+              description: obj.data.items[0].snippet.description,
+              publishedAt: obj.data.items[0].snippet.publishedAt,
+            });
         })
         .catch((err) => setError(err));
     },
     [currentPage]
   );
 
+  //formats dates to mm/dd/yyyy
   const parseDate = (str) => {
     let date = new Date(str);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -56,7 +65,13 @@ const Vlogs = () => {
     videoList.current.scrollIntoView({ behavior: "smooth" });
   };
   const handleSetFocusVideo = (videoToSet) => {
-    setFocusVideo(videoToSet);
+    console.log(videoToSet);
+    setFocusVideo({
+      Id: videoToSet.snippet.resourceId.videoId,
+      title: videoToSet.snippet.title,
+      description: videoToSet.snippet.description,
+      publishedAt: videoToSet.snippet.publishedAt,
+    });
     videoPlayer.current.scrollIntoView({ behavior: "smooth" });
   };
   useEffect(() => {
@@ -73,7 +88,7 @@ const Vlogs = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  src={`https://www.youtube.com/embed/${focusVideo.snippet.resourceId.videoId}`}
+                  src={`https://www.youtube.com/embed/${focusVideo.Id}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -81,11 +96,11 @@ const Vlogs = () => {
                 ></iframe>
               </div>
               <div className="p-2 p-md-3">
-                <Card.Title>{focusVideo.snippet.title}</Card.Title>
+                <Card.Title>{focusVideo.title}</Card.Title>
                 <Card.Subtitle className="pb-2 font-weight-light font-italic">
-                  {parseDate(focusVideo.snippet.publishedAt)}
+                  {parseDate(focusVideo.publishedAt)}
                 </Card.Subtitle>
-                <Card.Text>{focusVideo.snippet.description}</Card.Text>
+                <Card.Text>{focusVideo.description}</Card.Text>
               </div>
             </Card.Body>
           </Card>

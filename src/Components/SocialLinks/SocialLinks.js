@@ -13,7 +13,7 @@ const SocialLinks = () => {
           <ListGroup.Item
             className="border-0 text-secondary"
             action
-            href="https://twitter.com"
+            href="https://twitter.com/pvault2"
             target="_blank"
           >
             <FaTwitter />
@@ -29,7 +29,7 @@ const SocialLinks = () => {
           <ListGroup.Item
             className="border-0 text-secondary"
             action
-            href="https://twitter.com"
+            href="https://instagram.com/adamrude2go"
             target="_blank"
           >
             <FaInstagram />
@@ -37,7 +37,7 @@ const SocialLinks = () => {
           <ListGroup.Item
             className="border-0 text-secondary"
             action
-            href="https://twitter.com"
+            href="https://www.youtube.com/channel/UCFDd5xkTKs7BDCjvGeUl2iQ"
             target="_blank"
           >
             <FaYoutube />

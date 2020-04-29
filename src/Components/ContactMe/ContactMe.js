@@ -37,6 +37,7 @@ const ContactMe = () => {
         message: values.message,
       })
       .then((res) => {
+        //handles a successful send
         if (res.status === 200) {
           setFormCompletion({
             wasCompleted: true,
@@ -52,6 +53,7 @@ const ContactMe = () => {
           }, 5000);
         }
       })
+      //handles a failed send
       .catch((err) => {
         console.log("Error: ", err);
         setFormCompletion({
@@ -132,8 +134,8 @@ const ContactMe = () => {
         />
         {errors.message && <p className="error-message">{errors.message}</p>}
       </Form.Group>
-      <Row className="mt-5">
-        <Col xs={6} md={7}>
+      <Row className="mt-5 d-flex">
+        <Col className="flex-1">
           <div className="completion-message-container ">
             {formCompletion.wasCompleted && (
               <Alert variant="success" className="d-inline p-3">
@@ -147,18 +149,20 @@ const ContactMe = () => {
             )}
           </div>
         </Col>
-        <Col xs={6} md={4}>
+        <Col className="d-flex justify-content-end">
           <Button
-            variant="light"
-            className="w-100 "
+            variant="outline-light"
+            className="px-5 align-right"
             size="lg"
             name="submit"
+            style={{ "&hover": { color: "transparent", textShadow: "red" } }}
             disabled={isSubmitting}
             type="submit"
             onClick={handleSubmit}
           >
-            {" "}
-            <MdSend fill="#6c757d" />{" "}
+            {"  "}
+            <MdSend />
+            {"  "}
           </Button>
         </Col>
       </Row>
