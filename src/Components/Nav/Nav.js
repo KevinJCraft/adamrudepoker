@@ -35,7 +35,7 @@ const Nav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="./vlogs" onClick={closeMenu}>
+          <NavLink to="./vlogs" exact onClick={closeMenu}>
             Vlogs
           </NavLink>
         </li>

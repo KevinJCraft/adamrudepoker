@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
+import queryString from "query-string";
+import { useLocation, useHistory } from "react-router-dom";
 
 const Vlogs = () => {
   const [videos, setVideos] = useState();
@@ -17,11 +19,43 @@ const Vlogs = () => {
   const [error, setError] = useState();
   const videoPlayer = useRef(null);
   const videoList = useRef(null);
+  const history = useHistory();
+  const location = useLocation();
+  const search = queryString.parse(location.search);
+
+  // fetches video list from youtube api
+  const getVideo = useCallback(
+    async (id) => {
+      //first check search query for video id
+      if (search.video) id = search.video;
+
+      youtube
+        .get("videos", {
+          params: {
+            id: id,
+            part: "snippet, contentDetails, status",
+            key: process.env.REACT_APP_YOUTUBE_API_KEY,
+          },
+        })
+        .then((obj) => {
+          setFocusVideo({
+            Id: id,
+            title: obj.data.items[0].snippet.title,
+            description: obj.data.items[0].snippet.description,
+            publishedAt: obj.data.items[0].snippet.publishedAt,
+          });
+        })
+        .catch((err) => setError(err));
+    },
+    [search.video]
+  );
 
   // fetches video list from youtube api
   const getFeed = useCallback(
     async (pageToken = currentPage) => {
-      console.log(pageToken);
+      //first check search query for page info
+      if (search.pageToken) pageToken = search.pageToken;
+
       youtube
         .get("playlistItems", {
           params: {
@@ -40,18 +74,11 @@ const Vlogs = () => {
           setNextPageToken(
             obj.data.nextPageToken ? obj.data.nextPageToken : ""
           );
-          //set initial video on first render when there is no page token
-          if (!pageToken)
-            setFocusVideo({
-              Id: obj.data.items[0].snippet.resourceId.videoId,
-              title: obj.data.items[0].snippet.title,
-              description: obj.data.items[0].snippet.description,
-              publishedAt: obj.data.items[0].snippet.publishedAt,
-            });
+          getVideo(obj.data.items[0].snippet.resourceId.videoId);
         })
         .catch((err) => setError(err));
     },
-    [currentPage]
+    [getVideo, currentPage, search.pageToken]
   );
 
   //formats dates to mm/dd/yyyy
@@ -62,17 +89,30 @@ const Vlogs = () => {
 
   const handlePageChange = (token) => {
     setCurrentPage(token);
+    search.pageToken = token;
+    let string = queryString.stringify(search);
+    history.push({
+      pathname: location.url,
+      search: string,
+    });
     videoList.current.scrollIntoView({ behavior: "smooth" });
   };
   const handleSetFocusVideo = (videoToSet) => {
-    console.log(videoToSet);
     setFocusVideo({
       Id: videoToSet.snippet.resourceId.videoId,
       title: videoToSet.snippet.title,
       description: videoToSet.snippet.description,
       publishedAt: videoToSet.snippet.publishedAt,
     });
-    videoPlayer.current.scrollIntoView({ behavior: "smooth" });
+    search.video = videoToSet.snippet.resourceId.videoId;
+    let string = queryString.stringify(search);
+    history.push({
+      pathname: location.url,
+      search: string,
+    });
+
+    videoPlayer.current &&
+      videoPlayer.current.scrollIntoView({ behavior: "smooth" });
   };
   useEffect(() => {
     getFeed();

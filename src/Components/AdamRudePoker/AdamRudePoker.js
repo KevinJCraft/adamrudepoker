@@ -38,7 +38,7 @@ const AdamRudePoker = () => {
                   exact
                   component={OddsCalculator}
                 />
-                <Route path="/Vlogs" exact component={Vlogs} />
+                <Route path="/Vlogs" component={Vlogs} />
                 <Route path="*" component={NoPath} />
               </Switch>
             </Row>
