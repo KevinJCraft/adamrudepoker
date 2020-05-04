@@ -11,14 +11,15 @@ This is a website for Adam Rude and his Youtube poker vlog: https://www.youtube.
 
 - Clone the project
 - Build the application
-- Scaffold an initial migration
-- Enjoy creating, reading, updating, and deleting your example projects!
+- test for bugs
+- add style
 
 **Features**
 
-- Curate and display recent social media posts
+- prominently display shopSoRude merch 
 - Texas Holdem odds Calculator
 - Host recent vlogs
+- contact form
 
 **Milestones**
 
@@ -39,4 +40,11 @@ cd adamrudepoker
 npm install
 
 npm start
+
+**for working contact form**
+
+cd into src/apis/email_api (from seperate terminal)
+
+node app.js
+
 ```
