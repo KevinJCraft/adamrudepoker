@@ -74,11 +74,14 @@ const Vlogs = () => {
           setNextPageToken(
             obj.data.nextPageToken ? obj.data.nextPageToken : ""
           );
-          getVideo(obj.data.items[0].snippet.resourceId.videoId);
+          if (!search.video)
+            search.video = obj.data.items[0].snippet.resourceId.videoId;
+
+          getVideo();
         })
         .catch((err) => setError(err));
     },
-    [getVideo, currentPage, search.pageToken]
+    [getVideo, currentPage, search.pageToken, search.video]
   );
 
   //formats dates to mm/dd/yyyy
