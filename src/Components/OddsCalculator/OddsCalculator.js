@@ -150,11 +150,6 @@ const OddsCalculator = () => {
       );
       return;
     }
-    players.forEach((player) => {
-      if (player.cards.length === 0) {
-        deletePlayer(player);
-      }
-    });
     let Table = new TexasHoldem();
     let numOfEligiblePlayers = 0;
     players.forEach((player) => {
@@ -168,6 +163,15 @@ const OddsCalculator = () => {
       alert("Must have at least 2 players with 2 cards each");
       return;
     }
+    let willReturn = false;
+    players.forEach((player) => {
+      if (player.cards.length < 2) {
+        alert("Each player must have 2 cards");
+        willReturn = true;
+      }
+    });
+
+    if (willReturn) return;
     if (board.cards.length > 0) {
       let boardCards = board.cards.reduce((accum, card) => {
         accum.push(card.name);
