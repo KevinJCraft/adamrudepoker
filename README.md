@@ -11,23 +11,24 @@ This is a website for Adam Rude and his Youtube poker vlog: https://www.youtube.
 
 - Clone the project
 - Build the application
-- Scaffold an initial migration
-- Enjoy creating, reading, updating, and deleting your example projects!
+- test for bugs
+- add style
 
 **Features**
 
-- Curate and display recent social media posts
+- prominently display shopSoRude merch 
 - Texas Holdem odds Calculator
 - Host recent vlogs
+- contact form
 
 **Milestones**
 
-- [ ] Create a GitHub Repo and Start on a Project Plan 
-- [ ] Make rough visual mock up of website 
-- [ ] Implement calculator with React State 
-- [ ] Create API fetches for social media posts 
-- [ ] Make rough draft of website with full router functionality 
-- [ ] Make it look good
+- [x] Create a GitHub Repo and Start on a Project Plan 
+- [x] Make rough visual mock up of website 
+- [x] Implement calculator with React State 
+- [x] Create API fetches for social media posts 
+- [x] Make rough draft of website with full router functionality 
+- [x] Make it look good
 
 **Access project**
 
@@ -39,4 +40,11 @@ cd adamrudepoker
 npm install
 
 npm start
+
+**for working contact form**
+
+cd into src/apis/email_api (from seperate terminal)
+
+node app.js
+
 ```
