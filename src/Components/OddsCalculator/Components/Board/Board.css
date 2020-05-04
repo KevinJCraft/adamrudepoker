@@ -5,6 +5,7 @@
   flex-direction: row;
   text-align: left;
   padding: 0.25em;
+  cursor: pointer;
 }
 
 .board-card-cards {

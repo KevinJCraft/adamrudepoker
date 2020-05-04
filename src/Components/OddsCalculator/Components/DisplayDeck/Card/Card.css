@@ -5,6 +5,7 @@
   position: relative;
   border: black 1px solid;
   background-color: black;
+  cursor: pointer;
 }
 
 .deckCard div {
