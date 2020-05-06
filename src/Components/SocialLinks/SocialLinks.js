@@ -21,7 +21,7 @@ const SocialLinks = () => {
           <ListGroup.Item
             className="border-0 text-secondary"
             action
-            href="https://twitter.com"
+            href="https://www.facebook.com/groups/775964176144656/?ref=share"
             target="_blank"
           >
             <FaFacebook />
