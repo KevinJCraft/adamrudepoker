@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Header from "./Components/Header";
 import PlayerBlock from "./Components/PlayerBlock";
@@ -15,6 +15,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
+import HelpSection from "./Components/HelpSection";
 
 const INITIAL_BOARD_STATE = { cards: [], index: "board" };
 const INITIAL_PLAYER_STATE = { cards: [], winPercent: null, tiePercent: null };
@@ -28,6 +29,9 @@ const OddsCalculator = () => {
   const [focusIndex, setFocusIndex] = useState(players[0].index);
   const [board, setBoard] = useState(INITIAL_BOARD_STATE);
   const [deck, setDeck] = useState(INITIAL_DECK_STATE);
+  const [showHelp, setShowHelp] = useState(false);
+  const [helpHighlights, setHelpHighlights] = useState([]);
+  const helpList = useRef(null);
 
   const setHoleCard = (card) => {
     const MAX_SIZE = focusIndex === "board" ? 5 : 2;
@@ -143,12 +147,10 @@ const OddsCalculator = () => {
   };
 
   const handleCalculate = () => {
-    //board cannot contain a partial flop
+    resetResults();
+    const helpAlerts = [];
     if (board.cards.length === 1 || board.cards.length === 2) {
-      alert(
-        "The Board cannot have an incomplete flop.  Try again with no board cards or at least 3"
-      );
-      return;
+      helpAlerts.push(3);
     }
     let Table = new TexasHoldem();
     let numOfEligiblePlayers = 0;
@@ -160,18 +162,24 @@ const OddsCalculator = () => {
       }
     });
     if (numOfEligiblePlayers < 2) {
-      alert("Must have at least 2 players with 2 cards each");
-      return;
+      helpAlerts.push(0);
     }
-    let willReturn = false;
+
     players.forEach((player) => {
       if (player.cards.length < 2) {
-        alert("Each player must have 2 cards");
-        willReturn = true;
+        helpAlerts.push(1);
+        helpAlerts.push(2);
       }
     });
 
-    if (willReturn) return;
+    setHelpHighlights(helpAlerts);
+    if (helpAlerts.length > 0) {
+      setShowHelp(true);
+      helpList.current.scrollIntoView({ behavior: "smooth" });
+      return;
+    } else {
+      setShowHelp(false);
+    }
     if (board.cards.length > 0) {
       let boardCards = board.cards.reduce((accum, card) => {
         accum.push(card.name);
@@ -226,11 +234,23 @@ const OddsCalculator = () => {
     else setFocusIndex(index);
   };
 
+  const toggleHelpSection = () => {
+    if (showHelp) {
+      setShowHelp(false);
+    } else {
+      setShowHelp(true);
+      helpList.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     handleClearCards();
   }, []);
   return (
     <Container className="Calculator text-center mx-auto mb-4 py-4 ">
+      <Row ref={helpList} className="mb-4">
+        {showHelp && <HelpSection helpHighlights={helpHighlights} />}
+      </Row>
       <Row>
         <Col xs={12} md={6} className="mb-4">
           <Header />
@@ -244,9 +264,13 @@ const OddsCalculator = () => {
             <Button variant="danger" onClick={handleClearCards}>
               CLEAR
             </Button>
+            <Button variant="warning" onClick={toggleHelpSection}>
+              {showHelp ? "Close Help" : "Help"}
+            </Button>
           </ButtonGroup>
         </Col>
       </Row>
+
       <Row>
         {players.map((player, index) => (
           <PlayerBlock
