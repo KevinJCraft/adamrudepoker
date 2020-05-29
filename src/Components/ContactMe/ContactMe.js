@@ -31,13 +31,13 @@ const ContactMe = () => {
 
   function sendMail() {
     axios
-      .post("http://localhost:3030/api/email", {
+      .post("/.netlify/functions/sendgrid", {
         name: values.name,
         email: values.email,
         message: values.message,
       })
       .then((res) => {
-        //handles a successful send
+        console.log(res);
         if (res.status === 200) {
           setFormCompletion({
             wasCompleted: true,
@@ -53,7 +53,6 @@ const ContactMe = () => {
           }, 5000);
         }
       })
-      //handles a failed send
       .catch((err) => {
         console.log("Error: ", err);
         setFormCompletion({
@@ -69,7 +68,6 @@ const ContactMe = () => {
         }, 5000);
       });
   }
-
   const {
     handleSubmit,
     handleChange,
