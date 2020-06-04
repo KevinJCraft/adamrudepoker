@@ -5,7 +5,7 @@ exports.handler = function (event, context, callback) {
     sendGrid.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY); //API KEY stored in file not tracked by git
     const body = JSON.parse(event.body);
     const msg = {
-      to: "Craft.Kevin.J@Gmail.com",
+      to: "Adamrudevlog@gmail.com",
       from: body.email,
       subject: `Website Contact from ${body.name}`,
       text: body.message,
