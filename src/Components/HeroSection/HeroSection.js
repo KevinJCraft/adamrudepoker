@@ -7,7 +7,6 @@ import Spinner from "react-bootstrap/Spinner";
 import Badge from "react-bootstrap/Badge";
 import youtube from "../../APIs/YouTube_Api";
 import SocialLinks from "../SocialLinks/SocialLinks";
-import Background from "../../Assets/img/Banner_img.JPG";
 
 const HeroSection = () => {
   const [channelData, setChannelData] = useState();
@@ -43,7 +42,7 @@ const HeroSection = () => {
         <div
           className="position-absolute h-100 w-100"
           style={{
-            backgroundImage: `url(${Background})`,
+            backgroundImage: `url(${require("../../Assets/img/Banner_img.JPG")})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: ".5",
