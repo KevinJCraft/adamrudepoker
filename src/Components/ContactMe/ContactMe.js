@@ -99,7 +99,9 @@ const ContactMe = () => {
               onBlur={handleBlur}
               className={errors.name && "error"}
             />
-            {errors.name && <p className="error-message">{errors.name}</p>}
+            {errors.name && (
+              <p className="error-message font-weight-bold">{errors.name}</p>
+            )}
           </Form.Group>
         </Col>
         <Col xs={12} md={6}>
@@ -114,7 +116,9 @@ const ContactMe = () => {
               onBlur={handleBlur}
               className={errors.email && "error"}
             />
-            {errors.email && <p className="error-message">{errors.email}</p>}
+            {errors.email && (
+              <p className="error-message font-weight-bold">{errors.email}</p>
+            )}
           </Form.Group>
         </Col>
       </Row>
@@ -130,7 +134,9 @@ const ContactMe = () => {
           className={`${errors.message && "error"}`}
           style={{ height: "8em" }}
         />
-        {errors.message && <p className="error-message">{errors.message}</p>}
+        {errors.message && (
+          <p className="error-message font-weight-bold">{errors.message}</p>
+        )}
       </Form.Group>
       <Row className="mt-5 d-flex">
         <Col className="flex-1">
@@ -142,7 +148,7 @@ const ContactMe = () => {
             )}
             {formCompletion.errorMessage && (
               <Alert variant="danger" className="d-inline p-3">
-                Message not sent. Server Error.
+                Server Error.
               </Alert>
             )}
           </div>

@@ -29,6 +29,7 @@ const OddsCalculator = () => {
   const [focusIndex, setFocusIndex] = useState(players[0].index);
   const [board, setBoard] = useState(INITIAL_BOARD_STATE);
   const [deck, setDeck] = useState(INITIAL_DECK_STATE);
+  const [disabled, setDisabled] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [helpHighlights, setHelpHighlights] = useState([]);
   const helpList = useRef(null);
@@ -148,6 +149,8 @@ const OddsCalculator = () => {
 
   const handleCalculate = () => {
     resetResults();
+    //use helpAlerts array to hold the number of the rule that was
+    //broken so those can be highlighted on display
     const helpAlerts = [];
     if (board.cards.length === 1 || board.cards.length === 2) {
       helpAlerts.push(3);
@@ -180,6 +183,9 @@ const OddsCalculator = () => {
     } else {
       setShowHelp(false);
     }
+
+    setDisabled(true);
+
     if (board.cards.length > 0) {
       let boardCards = board.cards.reduce((accum, card) => {
         accum.push(card.name);
@@ -211,6 +217,7 @@ const OddsCalculator = () => {
     });
 
     setPlayers(newPlayers);
+    setDisabled(false);
   };
 
   const handleClearCards = () => {
@@ -257,14 +264,28 @@ const OddsCalculator = () => {
         </Col>
         <Col className="mb-4 d-flex align-items-center justify-content-around">
           <ButtonGroup>
-            <Button onClick={handleAddPlayer}>ADD PLAYER</Button>
-            <Button variant="success" onClick={handleCalculate}>
-              RUN
+            <Button disabled={disabled} onClick={handleAddPlayer}>
+              ADD PLAYER
             </Button>
-            <Button variant="danger" onClick={handleClearCards}>
+            <Button
+              disabled={disabled}
+              variant="success"
+              onClick={handleCalculate}
+            >
+              {disabled ? "hmmmm" : "RUN"}
+            </Button>
+            <Button
+              disabled={disabled}
+              variant="danger"
+              onClick={handleClearCards}
+            >
               CLEAR
             </Button>
-            <Button variant="warning" onClick={toggleHelpSection}>
+            <Button
+              disabled={disabled}
+              variant="warning"
+              onClick={toggleHelpSection}
+            >
               {showHelp ? "Close Help" : "Help"}
             </Button>
           </ButtonGroup>

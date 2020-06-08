@@ -7,6 +7,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Badge from "react-bootstrap/Badge";
 import youtube from "../../APIs/YouTube_Api";
 import SocialLinks from "../SocialLinks/SocialLinks";
+import Background from "../../Assets/img/Banner_img.JPG";
 
 const HeroSection = () => {
   const [channelData, setChannelData] = useState();
@@ -42,43 +43,37 @@ const HeroSection = () => {
         <div
           className="position-absolute h-100 w-100"
           style={{
-            background: `url(${channelData.brandingSettings.image.bannerTvImageUrl}) lightgrey`,
+            backgroundImage: `url(${Background})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: ".5",
             bottom: "0",
           }}
-          src={channelData.brandingSettings.image.bannerTvImageUrl}
         ></div>
         <Container>
           <Row className="py-4 p-md-5">
             <Col xs={{ span: 8, offset: 2 }} md={{ span: 4, offset: 0 }}>
               <Image
                 roundedCircle
-                src={channelData.snippet.thumbnails.high.url}
-                className="w-100 h-100 border border-light"
+                src={require("../../Assets/img/Adam_WSOP.JPG")}
+                className="w-100 h-100 "
               ></Image>
             </Col>
             <Col
               className="font-weight-bold pt-3 pt-md-0 py-lg-5 d-flex flex-column justify-content-around "
               style={{ fontWeight: "10000" }}
             >
-              <h1 className=" text-center text-md-left pl-md-5">
-                {channelData.snippet.title}
-              </h1>
+              <h1 className=" text-center text-md-left pl-md-5">Adam Rude</h1>
               <p className=" text-center text-md-left pl-md-5">
-                "{channelData.snippet.description}"
+                "I play poker, and I make videos about it."
               </p>
               <Row className="m-0  pl-md-5">
-                <Badge
-                  variant="secondary"
-                  className="d-block mx-auto mx-md-0 p-2 "
-                >
+                <Badge variant="info" className="d-block mx-auto mx-md-0 p-2 ">
                   subscribers:{" "}
                   {formatNumbers(channelData.statistics.subscriberCount)}
                 </Badge>
                 <Badge
-                  variant="secondary"
+                  variant="info"
                   className="d-block mx-auto mx-md-0 p-2 ml-md-3 "
                 >
                   total views: {formatNumbers(channelData.statistics.viewCount)}
