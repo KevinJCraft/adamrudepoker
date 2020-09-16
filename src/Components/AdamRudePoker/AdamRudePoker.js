@@ -16,6 +16,7 @@ import MenuButton from "../MenuButton";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import ScrollToTop from "../ScrollToTop";
 
 const AdamRudePoker = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +28,7 @@ const AdamRudePoker = () => {
           <Nav />
           <MenuButton />
           <HeroSection />
+          <ScrollToTop />
           <Container style={{ flex: 1 }} className="">
             {" "}
             {/* flex is for sticky footer */}
