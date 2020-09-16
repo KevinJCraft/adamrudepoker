@@ -125,7 +125,7 @@ const Vlogs = () => {
       <Row className="justify-content-around mb-4">
         {error && <h1>{error.message}</h1>}
         {focusVideo ? (
-          <Card ref={videoPlayer} className="border-0 rounded-0 shadow">
+          <Card ref={videoPlayer} className="border-0 rounded-0 shadow w-100">
             <Card.Body className="p-0">
               <div className="embed-responsive embed-responsive-16by9 mb-3">
                 <iframe
